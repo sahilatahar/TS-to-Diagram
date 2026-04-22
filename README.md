@@ -1,6 +1,6 @@
 # 📐 TS-to-Diagram
 
-**Lossless TypeScript-to-Visual Architecture Converter**
+**Instantly turn your TypeScript code into visual diagrams.**
 
 ![Complex SaaS Schema Preview](/public/preview.svg)
 
