@@ -2,6 +2,8 @@
 
 **Lossless TypeScript-to-Visual Architecture Converter**
 
+![Complex SaaS Schema Preview](/public/preview.svg)
+
 A powerful, industrial-grade web tool that transforms complex TypeScript interfaces and enums into interactive, high-fidelity diagrams. Built with a focus on **lossless parsing**—ensuring every field, audit timestamp, and nested object is captured and visualized.
 
 [**Live Demo**](https://ts-to-diagram.sahilatahar.dev/) | [**Report Bug**](https://github.com/sahilatahar/TS-to-Diagram/issues)
