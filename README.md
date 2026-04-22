@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# 📐 TS-to-Diagram
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Lossless TypeScript-to-Visual Architecture Converter**
 
-Currently, two official plugins are available:
+A powerful, industrial-grade web tool that transforms complex TypeScript interfaces and enums into interactive, high-fidelity diagrams. Built with a focus on **lossless parsing**—ensuring every field, audit timestamp, and nested object is captured and visualized.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[**Live Demo**](https://ts-to-diagram.sahilatahar.dev/) | [**Report Bug**](https://github.com/sahilatahar/TS-to-Diagram/issues)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **⚡ Lossless Parsing Engine**: Unlike standard parsers that trip over complex Mongoose types or union types, our engine captures every line, including `Types.ObjectId`, JSDoc comments, and multi-line definitions.
+- **🎨 Neo-Brutalist UI**: A high-contrast, industrial minimalism aesthetic built with **Tailwind CSS v4** and a grayscale-first palette.
+- **🔗 Intelligent Connectivity**: Automatically detects relationships between interfaces and enums, drawing precise wires using the Dagre layout engine.
+- **📦 Nested Object Support**: Handles inline object definitions (e.g., `metadata: { ... }`) by flattening them into clean, readable node entries.
+- **📥 SVG Export**: Download your entire architecture as a crisp, scalable SVG for documentation, Figma, or presentations.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework**: [React](https://reactjs.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (CSS-variable-first approach)
+- **Diagramming**: [React Flow](https://reactflow.dev/)
+- **Layout Engine**: [Dagre](https://github.com/dagrejs/dagre)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Export**: [html-to-image](https://www.google.com/search?q=https://github.com/tsayen/html-to-image)
 
-```js
-export default defineConfig([
-    globalIgnores(["dist"]),
-    {
-        files: ["**/*.{ts,tsx}"],
-        extends: [
-            // Other configs...
+## 🚀 Getting Started
 
-            // Remove tseslint.configs.recommended and replace with this
-            tseslint.configs.recommendedTypeChecked,
-            // Alternatively, use this for stricter rules
-            tseslint.configs.strictTypeChecked,
-            // Optionally, add this for stylistic rules
-            tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-            // Other configs...
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-                tsconfigRootDir: import.meta.dirname,
-            },
-            // other options...
-        },
-    },
-]);
-```
+- Node.js 18+
+- npm or pnpm
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Installation
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+1.  Clone the repository:
 
-export default defineConfig([
-    globalIgnores(["dist"]),
-    {
-        files: ["**/*.{ts,tsx}"],
-        extends: [
-            // Other configs...
-            // Enable lint rules for React
-            reactX.configs["recommended-typescript"],
-            // Enable lint rules for React DOM
-            reactDom.configs.recommended,
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-                tsconfigRootDir: import.meta.dirname,
-            },
-            // other options...
-        },
-    },
-]);
-```
+    ```bash
+    git clone https://github.com/sahilatahar/TS-to-Diagram.git
+    cd ts-to-diagram
+    ```
+
+2.  Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3.  Start the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+4.  Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## 📖 Usage
+
+1.  **Input**: Paste your TypeScript `interface` or `enum` definitions into the left-hand editor.
+2.  **Visualize**: Click the **"Rebuild Diagram"** button. The diagram will automatically recalculate heights and redraw connection wires.
+3.  **Download**: Use the **"Download SVG"** button in the header to save a vector image of your entire architecture.
+
+## 🤝 Contributing
+
+Contributions are welcome\! If you find a specific TypeScript syntax that breaks the parser, please open an issue with a code snippet.
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+## 📄 License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.

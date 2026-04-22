@@ -398,7 +398,7 @@ function DiagramCanvas({
                         onClick={visualize}
                         className="bg-action-primary text-action-text hover:bg-action-hover flex items-center gap-2 rounded-full px-6 py-3 text-[11px] font-black tracking-widest uppercase shadow-2xl transition-all"
                     >
-                        <Zap size={14} /> Rebuild Structure
+                        <Zap size={14} /> Rebuild Diagram
                     </button>
                 </Panel>
             </ReactFlow>
