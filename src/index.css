@@ -103,6 +103,14 @@
         color-mix(in srgb, var(--color-blue-500) 30%, transparent);
 }
 
+.react-flow {
+    background-color: var(--color-canvas-bg) !important;
+}
+
+.react-flow__viewport {
+    transform-origin: 0 0;
+}
+
 textarea::placeholder {
     color: var(--color-editor-placeholder);
     opacity: 1; /* Ensures the color isn't washed out by browser defaults */

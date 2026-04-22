@@ -1,4 +1,5 @@
 import dagre from "dagre";
+import { toSvg } from "html-to-image";
 import { Box, ChevronRight, Code2, Download, Hash, Zap } from "lucide-react";
 import React, {
     useCallback,
@@ -18,6 +19,7 @@ import ReactFlow, {
     ReactFlowProvider,
     applyEdgeChanges,
     applyNodeChanges,
+    getNodesBounds,
     useReactFlow,
     type Edge,
     type Node,
@@ -471,9 +473,57 @@ export interface ICustomer extends Document {
         document.addEventListener("mouseup", onMouseUp);
     };
 
-    const handleDownload = () => {
-        // Logic to trigger the SVG download panel or direct export
-        console.log("Download triggered");
+    const handleDownload = async () => {
+        if (!nodes || nodes.length === 0) return;
+
+        const viewport = document.querySelector(
+            ".react-flow__viewport",
+        ) as HTMLElement;
+        if (!viewport) return;
+
+        // 1. Get exact boundaries of all your schema cards
+        const bounds = getNodesBounds(nodes);
+
+        // 2. Add some "industrial padding" so cards aren't touching the edge of the SVG
+        const padding = 100;
+        const width = bounds.width + padding * 2;
+        const height = bounds.height + padding * 2;
+
+        // 3. This is the fix for "Half-Cut":
+        // We calculate a transform that shifts the 'minX' and 'minY' to the (0,0) of the SVG
+        // This ensures that even if nodes are at negative coordinates, they are visible.
+        const xTransform = -bounds.x + padding;
+        const yTransform = -bounds.y + padding;
+
+        try {
+            const dataUrl = await toSvg(viewport, {
+                backgroundColor: "var(--color-canvas-bg)",
+                width: width,
+                height: height,
+                style: {
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    // Force the viewport to shift specifically to cover the bounds
+                    transform: `translate(${xTransform}px, ${yTransform}px) scale(1)`,
+                },
+                filter: (node) => {
+                    const exclusionClasses = [
+                        "react-flow__controls",
+                        "react-flow__panel",
+                    ];
+                    return !exclusionClasses.some((cls) =>
+                        node.classList?.contains(cls),
+                    );
+                },
+            });
+
+            const link = document.createElement("a");
+            link.download = `ts-to-diagram-export.svg`;
+            link.href = dataUrl;
+            link.click();
+        } catch (error) {
+            console.error("Export error:", error);
+        }
     };
 
     return (
@@ -500,14 +550,12 @@ export interface ICustomer extends Document {
                         <Download size={14} />
                         Download SVG
                     </button>
-
                     <a
-                        href="https://github.com/your-username/your-repo"
+                        href="https://github.com/sahilatahar/TS-to-Diagram"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 rounded-md bg-zinc-100 px-4 py-2 text-xs font-bold text-black shadow-lg transition-transform hover:bg-white active:scale-95"
                     >
-                        {/* <Github size={14} /> */}
                         Star on GitHub
                     </a>
                 </div>
