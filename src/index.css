@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+    /* Layout & Canvas */
+    --color-app-bg: #050505;
+    --color-canvas-bg: #050505;
+    --color-editor-bg: #08080a;
+    --color-panel-header: color-mix(
+        in srgb,
+        var(--color-zinc-950) 50%,
+        transparent
+    );
+    --color-border-main: var(--color-zinc-900);
+    --color-grid-line: #111;
+
+    /* Buttons & Actions */
+    --color-action-primary: var(--color-blue-600);
+    --color-action-hover: var(--color-blue-500);
+    --color-action-text: var(--color-white);
+
+    /* Schema Node - Base */
+    --color-node-bg: #0d0d0f;
+    --color-node-body-bg: color-mix(
+        in srgb,
+        var(--color-black) 40%,
+        transparent
+    );
+    --color-field-border: color-mix(
+        in srgb,
+        var(--color-white) 5%,
+        transparent
+    );
+
+    /* Schema Node - Interface Variant */
+    --color-node-interface-border: color-mix(
+        in srgb,
+        var(--color-blue-500) 40%,
+        transparent
+    );
+    --color-node-interface-header: color-mix(
+        in srgb,
+        var(--color-blue-500) 10%,
+        transparent
+    );
+    --color-node-interface-text: var(--color-blue-400);
+    --color-node-interface-edge: var(--color-blue-500);
+
+    /* Schema Node - Enum Variant */
+    --color-node-enum-border: color-mix(
+        in srgb,
+        var(--color-orange-500) 40%,
+        transparent
+    );
+    --color-node-enum-header: color-mix(
+        in srgb,
+        var(--color-orange-500) 10%,
+        transparent
+    );
+    --color-node-enum-text: var(--color-orange-400);
+
+    /* Field Connection States */
+    --color-field-connected-bg: color-mix(
+        in srgb,
+        var(--color-blue-600) 30%,
+        transparent
+    );
+    --color-field-connected-border: color-mix(
+        in srgb,
+        var(--color-blue-500) 50%,
+        transparent
+    );
+    --color-field-connected-text: var(--color-blue-300);
+    --color-field-icon-active: var(--color-blue-500);
+    --color-field-icon-idle: var(--color-zinc-700);
+
+    /* Handles & Flow Controls */
+    --color-node-handle: var(--color-zinc-600);
+
+    /* Header Styles */
+    --color-header-bg: #0a0a0c;
+    --color-header-border: var(--color-zinc-800);
+    --color-header-text: var(--color-zinc-100);
+
+    /* Buttons */
+    --color-btn-secondary-bg: var(--color-zinc-900);
+    --color-btn-secondary-hover: var(--color-zinc-800);
+    --color-btn-secondary-border: var(--color-zinc-800);
+
+    --color-editor-placeholder: var(--color-gray-300);
+}
+
+/* UI Component Overrides */
+.react-flow__controls {
+    @apply border border-zinc-800! bg-zinc-950! shadow-2xl;
+}
+
+.react-flow__controls-button {
+    @apply border-b border-zinc-800! fill-white hover:bg-zinc-800!;
+}
+
+.header-title-glow {
+    text-shadow: 0 0 20px
+        color-mix(in srgb, var(--color-blue-500) 30%, transparent);
+}
+
+textarea::placeholder {
+    color: var(--color-editor-placeholder);
+    opacity: 1; /* Ensures the color isn't washed out by browser defaults */
+}
