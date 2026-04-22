@@ -356,9 +356,15 @@ function DiagramCanvas({
         }));
 
         const layouted = getLayoutedElements(reactNodes, newEdges);
-        setNodes(layouted.nodes);
-        setEdges(layouted.edges);
-        setTimeout(() => fitView({ duration: 800, padding: 0.2 }), 100);
+        setNodes([]);
+        setEdges([]);
+        requestAnimationFrame(() => {
+            setNodes(layouted.nodes);
+            setEdges(layouted.edges);
+            setTimeout(() => {
+                fitView({ duration: 800, padding: 0.2 });
+            }, 50);
+        });
     }, [code, fitView, setEdges, setNodes]);
 
     useEffect(() => {
